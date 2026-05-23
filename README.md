@@ -1,4 +1,4 @@
-# Streaming CDN Log Analytics (PySpark)
+# Streaming CDN Log Analytics 
 
 Batch pipeline that ingests CDN access logs from S3, aggregates QoE and cache metrics by edge region, and writes Parquet for Athena/Spark SQL. Job-level observability metrics are stored alongside outputs for pipeline health checks.
 
