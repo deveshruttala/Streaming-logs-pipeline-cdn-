@@ -1,0 +1,39 @@
+# Pipeline defaults. Environment variables override these at runtime.
+
+spark:
+  app_name: cdn-log-analytics
+  shuffle_partitions: 200
+  # Coalesce small files on write; tune per data volume.
+  coalesce_on_write: 8
+
+input:
+  format: json
+  # Expected layout: .../dt=YYYY-MM-DD/*.jsonl (Hive-style date partition optional)
+  path: ${INPUT_PATH}
+
+output:
+  path: ${OUTPUT_PATH}
+  format: parquet
+  mode: overwrite
+  # Hive-style partitions for Athena/Glue/Spark SQL pruning
+  partition_columns:
+    - dt
+    - edge_region
+
+dimensions:
+  # Small lookup table — broadcast join in production
+  edge_regions_path: ${DIMENSION_PATH}
+
+observability:
+  path: ${OBSERVABILITY_PATH}
+  enabled: true
+
+metrics:
+  # HTTP status >= this value counts as an error
+  error_status_threshold: 400
+  # Cache statuses treated as a hit (CDN-specific; extend as needed)
+  cache_hit_values:
+    - HIT
+    - Hit
+    - TCP_HIT
+    - TCP_MEM_HIT

@@ -1,0 +1,4 @@
+{"edge_region": "us-east-1", "region_tier": "primary", "region_display_name": "Us East 1"}
+{"edge_region": "us-west-2", "region_tier": "primary", "region_display_name": "Us West 2"}
+{"edge_region": "eu-west-1", "region_tier": "secondary", "region_display_name": "Eu West 1"}
+{"edge_region": "ap-southeast-1", "region_tier": "secondary", "region_display_name": "Ap Southeast 1"}

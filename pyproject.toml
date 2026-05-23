@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cdn-logs-pipeline"
+version = "1.0.0"
+description = "PySpark pipeline for CDN access log analytics on AWS S3"
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+  "pyspark>=3.4.0,<4.0.0",
+  "pyyaml>=6.0",
+  "boto3>=1.28.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4.0"]
+
+[project.scripts]
+cdn-logs-pipeline = "cdn_logs_pipeline.job:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
